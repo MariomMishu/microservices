@@ -11,7 +11,8 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountsEntity extends  BaseEntity {
+public class AccountsEntity extends BaseEntity {
+
     @Column(name="customer_id")
     private Long customerId;
 
