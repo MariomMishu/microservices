@@ -1,0 +1,15 @@
+services:
+  cards:
+    image: "mariammishu/cards:s4"
+    container_name: cards-ms
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - bs0842
+networks:
+  bs0842:
+    driver: bridge
