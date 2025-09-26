@@ -1,0 +1,26 @@
+name:  Accounts - develop
+on:
+  push:
+    branches:
+      - master
+jobs:
+  scan:
+    name: SCA Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run SCA Scan
+        uses: snyk/actions@master
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    needs: scan
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: docker build
+        working-directory: ./microservices/section4/accounts
+        run: mvn spring-boot:build-image
