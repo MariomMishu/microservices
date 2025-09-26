@@ -23,4 +23,11 @@ jobs:
 
       - name: docker build
         working-directory: ./microservices/section4/accounts
-        run: mvn spring-boot:build-image
+        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=docker.io/mariammishu/accounts:latest
+
+      - name: docker login
+        run:
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      - name: docker push
+        run: docker push docker.io/mariammishu/accounts:latest
